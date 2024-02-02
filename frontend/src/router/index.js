@@ -10,6 +10,9 @@ import { createRouter, createWebHistory } from 'vue-router/auto'
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
+  routes:[
+    { path: '/', component: () => import('../pages/upload.vue') },
+  ]
   // extendRoutes: setupLayouts,
 })
 
