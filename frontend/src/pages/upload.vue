@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>HELLO</h1>
-    <Upload />
+    <!-- <Upload /> -->
   </div>
 </template>
 
