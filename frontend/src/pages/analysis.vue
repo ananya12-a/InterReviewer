@@ -62,23 +62,40 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col cols="12" md="6">
-          <v-card class="ma-3">
-            <v-card-title></v-card-title>
-            <v-card-text>
-              <weight-cards filename="interviewee_weight_analysis_face"/>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col cols="12" md="6">
-          <v-card class="ma-3">
-            <v-card-title></v-card-title>
-            <v-card-text>
-              <weight-cards filename="interviewer_weight_analysis_face"/>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
+    <!-- Each card takes up 3 columns on medium and larger screens -->
+    <v-col cols="12" md="3">
+      <v-card class="ma-3">
+        <v-card-title>Interviewee Face <br/> Signficant Categories</v-card-title>
+        <v-card-text>
+          <weight-cards filename="interviewee_weight_face.csv"/>
+        </v-card-text>
+      </v-card>
+    </v-col>
+    <v-col cols="12" md="3">
+      <v-card class="ma-3">
+        <v-card-title>Card 2 Title</v-card-title>
+        <v-card-text>
+          <weight-cards filename="interviewer_weight_face.csv"/>
+        </v-card-text>
+      </v-card>
+    </v-col>
+    <v-col cols="12" md="3">
+      <v-card class="ma-3">
+        <v-card-title>Card 3 Title</v-card-title>
+        <v-card-text>
+          <weight-cards filename="interviewee_weight_prosody.csv"/>
+        </v-card-text>
+      </v-card>
+    </v-col>
+    <v-col cols="12" md="3">
+      <v-card class="ma-3">
+        <v-card-title>Card 4 Title</v-card-title>
+        <v-card-text>
+          <weight-cards filename="interviewer_weight_prosody.csv"/>
+        </v-card-text>
+      </v-card>
+    </v-col>
+  </v-row>
     </div>
   </template>
   

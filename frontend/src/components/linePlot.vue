@@ -28,12 +28,12 @@
         parseCsvToChartOptions(csvString) {
             // Split the string into lines
             const lines = csvString.trim().split('\n');
-            console.log(lines)
+            // console.log(lines)
             // Extract categories and values
             const x_vals = [];
             const emotions = lines[0].split(',')
             emotions.shift()
-            console.log("emotions", emotions)
+            // console.log("emotions", emotions)
             let series_to_put = []
 
 
