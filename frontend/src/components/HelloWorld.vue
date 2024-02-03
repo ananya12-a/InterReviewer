@@ -1,13 +1,13 @@
 <template>
   <v-container class="fill-height">
     <v-responsive class="align-center text-center fill-height">
-      <v-img height="300" src="@/assets/logo.svg" />
+      <v-img height="300" src="@/assets/logo.svg" class="mt-9"/>
 
       <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
 
-      <h1 class="text-h2 font-weight-bold">TEMP NAME</h1>
+      <h1 class="text-h2 font-weight-bold">InteReviewer</h1>
 
-      <div class="py-14" />
+      <div class="py-7" />
 
       <v-row class="d-flex align-center justify-center">
         <v-col cols="auto">

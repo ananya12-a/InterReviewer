@@ -25,7 +25,6 @@ def upload_file():
         # Accessing additional form data
         whoSpokeFirst = request.form.get('whoSpokeFirst')
         whoIsOnTheLeft = request.form.get('whoIsOnTheLeft')
-        time.sleep(3)
         # RUN COMPLETE ANALYSIS
         complete_analysis(filename, whoSpokeFirst, whoIsOnTheLeft)
         return 'File uploaded successfully', 200

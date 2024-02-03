@@ -1,5 +1,0 @@
-{
-    "Stress and Anxiety": "I think that it's like, the whole thing for, like, processes to have, like, private address basis.",
-    "Confidence and Self-assurance": "So, yeah, I think the answer is yes.",
-    "Passion and Motivation": "So I think that if you call for in as a system call, then you're creating a child process and child processes, share the same physical memory as their parent, I think, but they have, like, a new virtual address space because I'm pretty sure every process like, has its own virtual memory."
-}

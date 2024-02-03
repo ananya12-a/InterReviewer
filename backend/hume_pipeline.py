@@ -1,10 +1,10 @@
 from hume import HumeBatchClient
 from hume.models.config import FaceConfig, ProsodyConfig, LanguageConfig
 
-def call_hume():
+def call_hume(filename):
     client = HumeBatchClient("130VUokCECUiWliyfsZDdrNOpImkLWv60RrPSVPAl1RycIWk")
     # urls = ["https://storage.googleapis.com/hume-test-data/video/armisen-clip.mp4"]
-    filepaths = ["user_data/video1318490298.mp4"]
+    filepaths = [f"user_data/{filename}"]
     configs = [FaceConfig(identify_faces=True), ProsodyConfig(identify_speakers=True, granularity="sentence"), LanguageConfig(sentiment={},granularity="sentence")]
     # job = client.submit_job(urls, configs)
     job = client.submit_job(None, configs, files=filepaths)

@@ -2,15 +2,12 @@
     <div class="grey lighten-2">
       <v-row>
         <v-col cols="12">
-          <v-card class="ma-5">
-            <v-card-title class="headline">Analysis Dashboard</v-card-title>
-          </v-card>
+            <div class="text-h3 ma-3">Analysis Dashboard</div>
         </v-col>
       </v-row>
       <v-row>
-        <!-- Each card takes up 3 columns on medium and larger screens -->
         <v-col>
-          <v-card>
+          <v-card class="ma-3">
             <v-card-title>Recommendations for Improvement</v-card-title>
             <v-card-text>
               <gpt-card filename="gpt_recs.json"/>
