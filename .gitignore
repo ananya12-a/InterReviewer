@@ -1,6 +1,6 @@
 .DS_Store
 frontend/node_modules
-# backend/user_data
+backend/user_data
 /dist
 
 # local env files
