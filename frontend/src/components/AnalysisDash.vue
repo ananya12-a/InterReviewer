@@ -14,6 +14,9 @@ export default {
       chartOptions: {},
     };
   },
+  props:[
+    'filename'
+  ],
   async mounted() {
     await this.fetchAndParseCSV();
     this.createChart()
@@ -53,7 +56,7 @@ export default {
     async fetchAndParseCSV() {
       try {
         // Fetching the CSV file from the server
-        const response = await axios.get('http://localhost:5001/data.csv', { responseType: 'text' });
+        const response = await axios.get('http://localhost:5001/' + this.filename, { responseType: 'text' });
         console.log(response)
         this.chartOptions = this.parseCsvToChartOptions(response.data)
         console.log(this.chartOptions)

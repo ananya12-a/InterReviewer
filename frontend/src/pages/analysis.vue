@@ -1,7 +1,7 @@
 <template>
     <div>
       <h1>Analysis</h1>
-      <analysis-dash/>
+      <analysis-dash filename="face_viewee_barplot.csv"/>
     </div>
   </template>
   
