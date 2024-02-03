@@ -3,10 +3,24 @@
     <v-container fill-height>
       <v-row justify="center">
         <v-col cols="auto">
-          <v-card width="800" height="300" raised>
+          <v-card width="800" height="400" raised> <!-- Adjusted height for dropdowns -->
             <v-card-title>Congratulations on finishing your interview! Upload your recording here:</v-card-title>
             <br>
             <v-card-text>
+              <!-- Dropdown for who spoke first -->
+              <v-select
+                v-model="whoSpokeFirst"
+                :items="speakers"
+                label="Who spoke first?"
+                outlined
+              ></v-select>
+              <!-- Dropdown for position of interviewer -->
+              <v-select
+                v-model="whoIsOnTheLeft"
+                :items="speakers"
+                label="Who was on the left?"
+                outlined
+              ></v-select>
               <v-file-input
                 accept=".mp4"
                 label="Click here to select a .mp4 file"
@@ -26,7 +40,7 @@
             <v-card>
               <v-card-text>
                 <v-progress-circular indeterminate size="50"></v-progress-circular>
-                <span class="pl-2">Loading...</span> <!-- pl-2 is padding left 2 (8px) -->
+                <span class="pl-2">Loading...</span>
               </v-card-text>
             </v-card>
           </v-dialog>
@@ -42,36 +56,42 @@ import axios from "axios";
 export default {
   data: () => ({
     video: null,
-    data: null,
     loading: false,
+    whoSpokeFirst: null, // Selected value for who spoke first
+    whoIsOnTheLeft: null, // Selected value for interviewer's position
+    speakers: ['Interviewer', 'Interviewee'], // Items for who spoke first dropdown
   }),
   methods: {
     async submitFile() {
-    if (!this.video) {
-      this.data = "No File Chosen";
-      return;
-    }
-    this.loading = true; // Start loading
-    let formData = new FormData();
-    formData.append('video', this.video);
+      if (!this.video) {
+        return;
+      }
+      this.loading = true; // Start loading
+      let formData = new FormData();
+      formData.append('video', this.video);
+      formData.append('whoSpokeFirst', this.whoSpokeFirst);
+      formData.append('whoIsOnTheLeft', this.whoIsOnTheLeft);
 
-    try {
-      const response = await axios.post('http://localhost:5001/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-      console.log(response);
-      this.$router.push('/analysis');
-    } catch (error) {
-      console.error(error);
-    } finally {
-      this.loading = false; // Stop loading whether request succeeds or fails
-    }
-  },
+      try {
+        // Sending a POST request to the server with formData
+        const response = await axios.post('http://localhost:5001/upload', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+        console.log(response);
+        // Redirecting to /analysis route on successful upload
+        this.$router.push('/analysis');
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.loading = false; // Stop loading whether request succeeds or fails
+      }
+    },
     handle(event) {
       this.video = event.target.files.length > 0 ? event.target.files[0] : null;
     }
   }
 }
 </script>
+

@@ -1,20 +1,12 @@
 from flask import Flask, request
 from flask_cors import CORS
 import os
+import time
 # import complete_analysis from main_analysis
 from main_analysis import complete_analysis
-import time
 
 app = Flask(__name__)
-CORS(app)  # This will enable CORS for all routes
- 
-
-@app.route('/')
-
-def hello():
-
-    return 'Hello from Flask!'
-
+CORS(app)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -29,11 +21,18 @@ def upload_file():
     if file:
         filename = file.filename
         file.save(os.path.join('user_data/', filename))
-        time.sleep(10)
+
+        # Accessing additional form data
+        whoSpokeFirst = request.form.get('whoSpokeFirst')
+        whoIsOnTheLeft = request.form.get('whoIsOnTheLeft')
+
+        # print("Who Spoke First:", whoSpokeFirst)
+        # print("Interviewer Position:", whoIsOnTheLeft)
+
+        time.sleep(3)
         # RUN COMPLETE ANALYSIS
-        complete_analysis(filename)
+        complete_analysis(filename, whoSpokeFirst, whoIsOnTheLeft)
         return 'File uploaded successfully', 200
 
-
 if __name__ == "__main__":
-        app.run(host='0.0.0.0', port=5001)   
+        app.run(host='0.0.0.0', port=5001)
