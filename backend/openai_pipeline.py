@@ -11,7 +11,6 @@ def call_chatgpt(input):
 
     client = OpenAI(
         # This is the default and can be omitted
-        #api_key=os.environ.get("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"),
         api_key=os.getenv("OPENAI_API_KEY")
     )
 
