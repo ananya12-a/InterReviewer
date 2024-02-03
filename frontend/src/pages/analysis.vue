@@ -1,67 +1,58 @@
 <template>
-  <div>
-    <h1>Analysis</h1>
-    <div id="chart"></div>
-  </div>
-</template>
-
-<script>
-// import AnalysisDash from '@/components/AnalysisDash.vue';
-import ApexCharts from 'apexcharts'
-
-export default {
-  data() {
-    return {
-        options : {
-            chart: {
-                type: 'bar'
-            },
-            plotOptions: {
-                bar: {
-                horizontal: true
-                }
-            },
-            series: [{
-                data: [{
-                x: 'category A',
-                y: 10
-                }, {
-                x: 'category B',
-                y: 18
-                }, {
-                x: 'category C',
-                y: 13
-                }]
-            }]
-            }
-    }
-  },
-  mounted() {
-    this.chartStuff();
-  },
-  methods: {
-    chartStuff(){
-        var options = {
-            chart: {
-                type: 'bar'
-            },
-            series: [{
-                name: 'sales',
-                data: [30,40,45,50,49,60,70,91,125]
-            }],
-            xaxis: {
-                categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
-            }
-        }
-
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
-
-        chart.render();
-    }
+    <div>
+      <v-row>
+        <v-col cols="12">
+          <v-card class="ma-5">
+            <v-card-title class="headline">Analysis Dashboard</v-card-title>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-card class="ma-3">
+            <v-card-title>Top Interviewee Sentiments - Face Viewee</v-card-title>
+            <v-card-text>
+              <bar-plot filename="face_viewee_barplot.csv" id="chart1"/>
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="6">
+          <v-card class="ma-3">
+            <v-card-title>Top Interviewee Sentiments - Face Viewer</v-card-title>
+            <v-card-text>
+              <bar-plot filename="face_viewer_barplot.csv" id="chart2"/>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-card class="ma-3">
+            <v-card-title>Top Interviewee Sentiments - Pros Viewee</v-card-title>
+            <v-card-text>
+              <bar-plot filename="pros_viewee_barplot.csv" id="chart3"/>
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="6">
+          <v-card class="ma-3">
+            <v-card-title>Top Interviewee Sentiments - Pros Viewer</v-card-title>
+            <v-card-text>
+              <bar-plot filename="pros_viewer_barplot.csv" id="chart4"/>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    // Your script here
   }
-}
-</script>
-
-<style>
-
-</style>
+  </script>
+  
+  <style>
+  /* Additional styling if needed */
+  </style>
+  

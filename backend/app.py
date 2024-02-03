@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request,send_from_directory
 from flask_cors import CORS
 import os
 import time
@@ -29,6 +29,23 @@ def upload_file():
         # RUN COMPLETE ANALYSIS
         complete_analysis(filename, whoSpokeFirst, whoIsOnTheLeft)
         return 'File uploaded successfully', 200
+
+
+@app.route('/face_viewee_barplot.csv')
+def serve_face_viewee_barplot():
+    return send_from_directory('plot_data', 'face_viewee_barplot.csv')
+
+@app.route('/face_viewer_barplot.csv')
+def serve_face_viewer_barplot():
+    return send_from_directory('plot_data', 'face_viewer_barplot.csv')
+
+@app.route('/pros_viewee_barplot.csv')
+def serve_pros_viewee_barplot():
+    return send_from_directory('plot_data', 'pros_viewee_barplot.csv')
+
+@app.route('/pros_viewer_barplot.csv')
+def serve_pros_viewer_barplot():
+    return send_from_directory('plot_data', 'pros_viewer_barplot.csv')
 
 if __name__ == "__main__":
         app.run(host='0.0.0.0', port=5001)

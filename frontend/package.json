@@ -15,6 +15,7 @@
     "roboto-fontface": "*",
     "vue": "^3.3.0",
     "vue-apexcharts": "^1.6.2",
+    "vue-papa-parse": "^3.1.0",
     "vuetify": "^3.0.0"
   },
   "devDependencies": {
