@@ -61,11 +61,31 @@
           </v-card>
         </v-col>
       </v-row>
+      <v-row>
+        <v-col cols="12" md="6">
+          <v-card class="ma-3">
+            <v-card-title></v-card-title>
+            <v-card-text>
+              <weight-cards filename="interviewee_weight_analysis_face"/>
+            </v-card-text>
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="6">
+          <v-card class="ma-3">
+            <v-card-title></v-card-title>
+            <v-card-text>
+              <weight-cards filename="interviewer_weight_analysis_face"/>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
     </div>
   </template>
   
   <script>
+import weightCards from '../components/weightCards.vue'
   export default {
+  components: { weightCards },
     // Your script here
   }
   </script>
