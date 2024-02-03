@@ -71,5 +71,13 @@ def serve_interviewee_weight_prosody():
 def serve_interviewer_weight_prosody():
     return send_from_directory('user_weights', 'interviewer_weight_analysis_prosody.json')
 
+@app.route('/gpt_recs.json')
+def serve_gpt_recs():
+    return send_from_directory('superlatives', 'gpt_recs.json')
+
+@app.route('/interviewee_pros_super.json')
+def serve_interviewee_pros_super():
+    return send_from_directory('superlatives', 'interviewee_prosody.json')
+
 if __name__ == "__main__":
         app.run(host='0.0.0.0', port=5001)
