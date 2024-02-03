@@ -146,10 +146,10 @@ def weights_anal():
             interviewee_weights[interviewee_cat[number]]=count/len(frames_interviewee)
         print("\n")
         print("\n")
-        with open(f'interviewer_weight_analysis_{str(modelName)}.json', 'w') as json_file:
+        with open(f'user_weights/interviewer_weight_analysis_{str(modelName)}.json', 'w') as json_file:
             json.dump(interviewer_weights, json_file, indent=4)
 
-        with open(f'interviewee_weight_analysis_{str(modelName)}.json', 'w') as json_file:
+        with open(f'user_weights/interviewee_weight_analysis_{str(modelName)}.json', 'w') as json_file:
             json.dump(interviewee_weights, json_file, indent=4)
 
     save_json(face, "face", ["face_0", "face_1"])
