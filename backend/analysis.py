@@ -66,11 +66,13 @@ def stat_analysis(filename, spokeFirst, onLeft):
     face_viewer_tl = face_viewer.drop(labels=['average', 'std'],axis=1)
     face_viewer_tl = face_viewer_tl.loc[top_viewer_emos]
     face_viewer_tl.columns = face["Time"][::2]
+    face_viewer_tl = face_viewer_tl.T
     face_viewer_tl.to_csv("plot_data/face_viewer_tl.csv")
 
     face_viewee_tl = face_viewee.drop(labels=['average', 'std'],axis=1)
     face_viewee_tl = face_viewee_tl.loc[top_viewee_emos]
     face_viewee_tl.columns = face["Time"][::2]
+    face_viewee_tl = face_viewee_tl.T
     face_viewee_tl.to_csv("plot_data/face_viewee_tl.csv")
 
     # pros_viewer_tl = pros_viewer.drop(labels=['average', 'std'],axis=1)

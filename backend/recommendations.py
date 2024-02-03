@@ -1,6 +1,7 @@
 import pandas as pd 
 import numpy as np
 import scipy.stats as stats
+import json
 
 def superlatives(filename, spokeFirst):
     
@@ -27,12 +28,15 @@ def superlatives(filename, spokeFirst):
 
     weights_interviewee = np.matmul(pros_ee_emo, interviewee)
 
-    WI_z_row = stats.zscore(weights_interviewee, axis=0)
-    WI_z_col = stats.zscore(WI_z_row, axis=1)
+    WI_z_row = stats.zscore(weights_interviewee, axis=1)
+    WI_z_col = stats.zscore(WI_z_row, axis=0)
 
     df = pd.DataFrame(WI_z_col, columns=interviewee_cat, index=pros_interviewee["Text"])
-    print(df.iloc[:, 0:2])
-
-
-superlatives("video1318490298.mp4", "Interviewer")
+    interviewee_text = {}
+    for cat in [	'Stress and Anxiety',	'Confidence and Self-assurance',	'Passion and Motivation']:
+        maxid = df[cat].idxmax()
+        interviewee_text[cat] = maxid
+    
+    with open(f'superlatives/interviewee_prosody.json', 'w') as json_file:
+            json.dump(interviewee_text, json_file, indent=4)
 
