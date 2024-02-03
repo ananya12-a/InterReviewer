@@ -55,6 +55,10 @@ def serve_face_viewer_tl():
 def serve_face_viewee_tl():
     return send_from_directory('plot_data', 'face_viewee_tl.csv')
 
+@app.route('/interviewee_weight_face.csv')
+def serve_face_viewee_tl():
+    return send_from_directory('user_weights', 'face_viewee_tl.csv')
+
 
 if __name__ == "__main__":
         app.run(host='0.0.0.0', port=5001)

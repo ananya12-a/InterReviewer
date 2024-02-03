@@ -59,6 +59,9 @@
                 xaxis: {
                     categories: x_vals,
                     tickAmount: 20
+                },
+                stroke:{
+                    width:2
                 }
             };
   

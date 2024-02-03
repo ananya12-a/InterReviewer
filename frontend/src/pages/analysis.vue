@@ -46,7 +46,7 @@
       <v-row>
         <v-col cols="12" md="6">
           <v-card class="ma-3">
-            <v-card-title>Line Plot 1</v-card-title>
+            <v-card-title>Interviewer Sentiment Timeline</v-card-title>
             <v-card-text>
               <line-plot filename="face_viewer_tl.csv" id="chart5"/>
             </v-card-text>
@@ -54,7 +54,7 @@
         </v-col>
         <v-col cols="12" md="6">
           <v-card class="ma-3">
-            <v-card-title>Line Plot 2</v-card-title>
+            <v-card-title>Interviewee Sentiment Timeline</v-card-title>
             <v-card-text>
               <line-plot filename="face_viewee_tl.csv" id="chart6"/>
             </v-card-text>
