@@ -1,8 +1,9 @@
 from flask import Flask, request
 from flask_cors import CORS
 import os
-
- 
+# import complete_analysis from main_analysis
+# from main
+import time
 
 app = Flask(__name__)
 CORS(app)  # This will enable CORS for all routes
@@ -28,6 +29,8 @@ def upload_file():
     if file:
         filename = file.filename
         file.save(os.path.join('user_data/', filename))
+        time.sleep(10)
+        # RUN COMPLETE ANALYSIS
         return 'File uploaded successfully', 200
 
 
