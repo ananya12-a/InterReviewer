@@ -64,13 +64,13 @@ def stat_analysis(filename):
     face_viewee_tl.columns = face["Time"][::2]
     face_viewee_tl.to_csv("plot_data/face_viewee_tl.csv")
 
-    pros_viewer_tl = pros_viewer.drop(labels=['average', 'std'],axis=1)
-    pros_viewer_tl = pros_viewer_tl.loc[top_viewer_emos]
-    pros_viewer_tl.columns = face["Time"][::2]
-    pros_viewer_tl.to_csv("plot_data/pros_viewer_tl.csv")
+    # pros_viewer_tl = pros_viewer.drop(labels=['average', 'std'],axis=1)
+    # pros_viewer_tl = pros_viewer_tl.loc[top_viewer_emos]
+    # pros_viewer_tl.columns = face["Time"][::2]
+    # pros_viewer_tl.to_csv("plot_data/pros_viewer_tl.csv")
 
-    pros_viewee_tl = pros_viewee.drop(labels=['average', 'std'],axis=1)
-    pros_viewee_tl = pros_viewee_tl.loc[top_viewee_emos]
-    pros_viewee_tl.columns = face["Time"][::2]
-    pros_viewee_tl.to_csv("plot_data/pros_viewee_tl.csv")
+    # pros_viewee_tl = pros_viewee.drop(labels=['average', 'std'],axis=1)
+    # pros_viewee_tl = pros_viewee_tl.loc[top_viewee_emos]
+    # pros_viewee_tl.columns = face["Time"][::2]
+    # pros_viewee_tl.to_csv("plot_data/pros_viewee_tl.csv")
 
