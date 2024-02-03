@@ -1,20 +1,19 @@
 from hume import HumeBatchClient
-from hume.models.config import FaceConfig
-from hume.models.config import ProsodyConfig
+from hume.models.config import FaceConfig, ProsodyConfig, LanguageConfig
 
 client = HumeBatchClient("130VUokCECUiWliyfsZDdrNOpImkLWv60RrPSVPAl1RycIWk")
 # urls = ["https://storage.googleapis.com/hume-test-data/video/armisen-clip.mp4"]
-filepaths = ["\user_data\video1124829211.mp4"]
-configs = [FaceConfig(identify_faces=True), ProsodyConfig()]
+filepaths = ["user_data/video1124829211.mp4"]
+configs = [FaceConfig(identify_faces=True), ProsodyConfig(), LanguageConfig()]
 # job = client.submit_job(urls, configs)
-job = client.submit_job(None, [configs],file=filepaths)
+job = client.submit_job(None, configs, files=filepaths)
 
 print(job)
 print("Running...")
 
 details = job.await_complete()
-job.download_predictions("predictions.json")
+job.download_predictions("job_output/predictions.json")
 print("Predictions downloaded to predictions.json")
 
-job.download_artifacts("artifacts.zip")
+job.download_artifacts("job_output/artifacts.zip")
 print("Artifacts downloaded to artifacts.zip")
