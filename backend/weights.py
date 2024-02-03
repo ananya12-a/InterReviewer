@@ -146,11 +146,11 @@ def weights_anal(filename, spokeFirst, onLeft):
 
         for number, count in zip(unique_numbers_interviewer, count_interviewer):
             print(f"The interviewer displayed {interviewer_cat[number]} for {count/len(frames_interviewer) * 100}% of the time")
-            interviewer_weights[interviewer_cat[number]]=count/len(frames_interviewer)
+            interviewer_weights[interviewer_cat[number]]=(count/len(frames_interviewer)).round(2)
         print("\n")
         for number, count in zip(unique_numbers_interviewee, count_interviewee):
             print(f"The interviewee displayed {interviewee_cat[number]} for {count/len(frames_interviewee) * 100}% of the time")
-            interviewee_weights[interviewee_cat[number]]=count/len(frames_interviewee)
+            interviewee_weights[interviewee_cat[number]]=(count/len(frames_interviewee)).round(2)
         print("\n")
         print("\n")
         with open(f'user_weights/interviewer_weight_analysis_{str(modelName)}.json', 'w') as json_file:
