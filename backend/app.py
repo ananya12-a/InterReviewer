@@ -47,5 +47,14 @@ def serve_pros_viewee_barplot():
 def serve_pros_viewer_barplot():
     return send_from_directory('plot_data', 'pros_viewer_barplot.csv')
 
+@app.route('/face_viewer_tl.csv')
+def serve_face_viewer_tl():
+    return send_from_directory('plot_data', 'face_viewer_tl.csv')
+
+@app.route('/face_viewee_tl.csv')
+def serve_face_viewee_tl():
+    return send_from_directory('plot_data', 'face_viewee_tl.csv')
+
+
 if __name__ == "__main__":
         app.run(host='0.0.0.0', port=5001)

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card-title>{{title}}</v-card-title>
+    <!-- <v-card-title>{{title}}</v-card-title> -->
     <div :id="id"></div>
   </div>
 </template>
@@ -60,9 +60,9 @@ export default {
       try {
         // Fetching the CSV file from the server
         const response = await axios.get('http://localhost:5001/' + this.filename, { responseType: 'text' });
-        console.log(response)
+        // console.log(response)
         this.chartOptions = this.parseCsvToChartOptions(response.data)
-        console.log(this.chartOptions)
+        // console.log(this.chartOptions)
       } catch (error) {
         console.error('Error loading the CSV file:', error);
       }

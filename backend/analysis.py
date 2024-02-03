@@ -59,6 +59,7 @@ def stat_analysis(filename, spokeFirst, onLeft):
     pros_viewee_bar.to_csv("plot_data/pros_viewee_barplot.csv")
 
 
+
     # timeline analysis
     top_viewer_emos = ["Interest", "Boredom", "Admiration", "Disappointment", "Surprise (positive)", "Surprise (negative)"]
     top_viewee_emos = ["Calmness", "Excitement", "Awkwardness", "Doubt","Anxiety","Triumph"]
