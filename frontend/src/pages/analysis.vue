@@ -8,6 +8,17 @@
         </v-col>
       </v-row>
       <v-row>
+        <!-- Each card takes up 3 columns on medium and larger screens -->
+        <v-col cols="12" md="3">
+          <v-card class="ma-3">
+            <v-card-title>Recommendations for Improvement</v-card-title>
+            <v-card-text>
+              <gpt-card filename="gpt_recs.json"/>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col cols="12" md="6">
           <v-card class="ma-3">
             <v-card-title>Top Interviewee Sentiments - Face Analysis</v-card-title>
@@ -100,9 +111,10 @@
   </template>
   
   <script>
+import GptCard from '../components/gptCard.vue'
 import weightCards from '../components/weightCards.vue'
   export default {
-  components: { weightCards },
+  components: { weightCards, GptCard },
     // Your script here
   }
   </script>
