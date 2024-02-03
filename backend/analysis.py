@@ -31,4 +31,12 @@ face_1_emotions.sort_values(by=['average'], inplace=True, ascending=False)
 
 # print(face_0_emotions.head())
 
-print(prosody.head())
+print(prosody.columns)
+
+def process(df, id):
+    new_df = df[df["Id"] == id]
+    new_df = new_df[emotions].T
+    new_df['average'] = new_df.mean(numeric_only=True, axis=1)
+    new_df['std'] = new_df.std(numeric_only=True, axis=1)
+    new_df.sort_values(by=['average'], inplace=True, ascending=False)
+    return new_df
