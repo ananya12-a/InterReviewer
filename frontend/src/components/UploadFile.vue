@@ -48,7 +48,7 @@ export default{
       console.log(this.video)
       let formData = new FormData();
       formData.append('video', this.video);
-      // axios.post( '/single-file',
+      // axios.post( 'http://localhost:5001/upload',
       //         formData,
       //         {
       //         headers: {
@@ -61,6 +61,17 @@ export default{
       // .catch(function(){
       //   console.log('FAILURE!!');
       // });
+      axios.post('http://localhost:5001/upload', formData, {
+          headers: {
+              'Content-Type': 'multipart/form-data'
+          }
+      })
+      .then(response => {
+          console.log(response);
+      })
+      .catch(error => {
+          console.error(error);
+      });
     },
     handle(event){
       this.video = event.target.files.length > 0 ? event.target.files[0] : null;
