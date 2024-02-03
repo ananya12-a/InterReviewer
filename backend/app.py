@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 import os
 # import complete_analysis from main_analysis
-# from main
+from main_analysis import complete_analysis
 import time
 
 app = Flask(__name__)
@@ -31,6 +31,7 @@ def upload_file():
         file.save(os.path.join('user_data/', filename))
         time.sleep(10)
         # RUN COMPLETE ANALYSIS
+        complete_analysis(filename)
         return 'File uploaded successfully', 200
 
 
