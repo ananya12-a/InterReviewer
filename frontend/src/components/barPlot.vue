@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div id="chart"></div>
+    <v-card-title>{{title}}</v-card-title>
+    <div :id="id"></div>
   </div>
 </template>
 
@@ -15,7 +16,9 @@ export default {
     };
   },
   props:[
-    'filename'
+    'filename',
+    'id',
+    'title'
   ],
   async mounted() {
     await this.fetchAndParseCSV();
@@ -66,7 +69,7 @@ export default {
     },
     createChart() {
       if (this.chartOptions) {
-        const chart = new ApexCharts(document.querySelector("#chart"), this.chartOptions);
+        const chart = new ApexCharts(document.querySelector("#" + this.id), this.chartOptions);
         chart.render();
       }
     }
