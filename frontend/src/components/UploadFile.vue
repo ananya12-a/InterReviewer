@@ -11,12 +11,13 @@
                       accept=".mp4"
                       label="Click here to select a .mp4 file"
                       outlined-v-model="video"
+                      @change="handle"
                     >
                     </v-file-input>
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn right @click="upload">Read File</v-btn>
+                    <v-btn right @click="submitFile">Read File</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-col>
@@ -31,18 +32,38 @@
     </div>
   </template>
 
-  <script>
+<script>
+import axios from "axios";
 export default{
   data: ()=>({
       video:null,
       data: null,
   }),
   methods:{
-    upload(){
+    submitFile(){
       if (!this.video) {
         this.data = "No File Chosen"
       }
-      this.data = "successful upload"
+      // this.data = "successful upload"
+      console.log(this.video)
+      let formData = new FormData();
+      formData.append('video', this.video);
+      // axios.post( '/single-file',
+      //         formData,
+      //         {
+      //         headers: {
+      //             'Content-Type': 'multipart/form-data'
+      //         }
+      //       }
+      //     ).then(function(){
+      //   console.log('SUCCESS!!');
+      // })
+      // .catch(function(){
+      //   console.log('FAILURE!!');
+      // });
+    },
+    handle(event){
+      this.video = event.target.files.length > 0 ? event.target.files[0] : null;
     }
   }
 }
