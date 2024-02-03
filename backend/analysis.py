@@ -46,16 +46,16 @@ def stat_analysis(filename, spokeFirst, onLeft):
 
 
     ## bar plot analysis (repeat for all)
-    face_viewer_bar = face_viewer[["average"]][0:5]
+    face_viewer_bar = face_viewer[["average"]][0:5].round(2)
     face_viewer_bar.to_csv("plot_data/face_viewer_barplot.csv")
 
-    face_viewee_bar = face_viewee[["average"]][0:5]
+    face_viewee_bar = face_viewee[["average"]][0:5].round(2)
     face_viewee_bar.to_csv("plot_data/face_viewee_barplot.csv")
 
-    pros_viewer_bar = pros_viewer[["average"]][0:5]
+    pros_viewer_bar = pros_viewer[["average"]][0:5].round(2)
     pros_viewer_bar.to_csv("plot_data/pros_viewer_barplot.csv")
 
-    pros_viewee_bar = pros_viewee[["average"]][0:5]
+    pros_viewee_bar = pros_viewee[["average"]][0:5].round(2)
     pros_viewee_bar.to_csv("plot_data/pros_viewee_barplot.csv")
 
 
@@ -66,13 +66,13 @@ def stat_analysis(filename, spokeFirst, onLeft):
     face_viewer_tl = face_viewer.drop(labels=['average', 'std'],axis=1)
     face_viewer_tl = face_viewer_tl.loc[top_viewer_emos]
     face_viewer_tl.columns = face["Time"][::2]
-    face_viewer_tl = face_viewer_tl.T
+    face_viewer_tl = face_viewer_tl.T.round(2)
     face_viewer_tl.to_csv("plot_data/face_viewer_tl.csv")
 
     face_viewee_tl = face_viewee.drop(labels=['average', 'std'],axis=1)
     face_viewee_tl = face_viewee_tl.loc[top_viewee_emos]
     face_viewee_tl.columns = face["Time"][::2]
-    face_viewee_tl = face_viewee_tl.T
+    face_viewee_tl = face_viewee_tl.T.round(2)
     face_viewee_tl.to_csv("plot_data/face_viewee_tl.csv")
 
     # pros_viewer_tl = pros_viewer.drop(labels=['average', 'std'],axis=1)
