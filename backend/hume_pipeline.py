@@ -4,7 +4,7 @@ from hume.models.config import FaceConfig, ProsodyConfig, LanguageConfig
 client = HumeBatchClient("130VUokCECUiWliyfsZDdrNOpImkLWv60RrPSVPAl1RycIWk")
 # urls = ["https://storage.googleapis.com/hume-test-data/video/armisen-clip.mp4"]
 filepaths = ["user_data/video1124829211.mp4"]
-configs = [FaceConfig(identify_faces=True, save_faces=True), ProsodyConfig(identify_speakers=True, granularity="conversational_turn"), LanguageConfig(sentiment={},granularity="sentence")]
+configs = [FaceConfig(identify_faces=True), ProsodyConfig(identify_speakers=True, granularity="sentence"), LanguageConfig(sentiment={},granularity="sentence")]
 # job = client.submit_job(urls, configs)
 job = client.submit_job(None, configs, files=filepaths)
 
