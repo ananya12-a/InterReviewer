@@ -88,68 +88,69 @@ import json
 # np.savetxt("weights/interviewer.csv", data_interviewer, delimiter=",")
 # np.savetxt("weights/interviewee.csv", data_interviewee, delimiter=",")
 
-interviewer_index = 1
+def weights_anal():
+    interviewer_index = 1
 
 
-interviewee = np.loadtxt("weights/interviewee.csv",delimiter=",", dtype=np.float64)
-interviewer = np.loadtxt("weights/interviewer.csv",delimiter=",", dtype=np.float64)
+    interviewee = np.loadtxt("weights/interviewee.csv",delimiter=",", dtype=np.float64)
+    interviewer = np.loadtxt("weights/interviewer.csv",delimiter=",", dtype=np.float64)
 
-emotions = ['Admiration', 'Adoration', 'Aesthetic Appreciation', 'Amusement', 'Anger', 'Anxiety', 'Awe', 'Awkwardness', 'Boredom', 'Calmness', 'Concentration', 'Contemplation', 'Confusion', 'Contempt', 'Contentment', 'Craving', 'Determination', 'Disappointment', 'Disgust', 'Distress', 'Doubt', 'Ecstasy', 'Embarrassment', 'Empathic Pain', 'Entrancement', 'Envy', 'Excitement', 'Fear', 'Guilt', 'Horror', 'Interest', 'Joy', 'Love', 'Nostalgia', 'Pain', 'Pride', 'Realization', 'Relief', 'Romance', 'Sadness', 'Satisfaction', 'Desire', 'Shame', 'Surprise (negative)', 'Surprise (positive)', 'Sympathy', 'Tiredness', 'Triumph']
-interviewer_cat = ['Candidate Perception',	'Engagement Level',	'Patience and Tolerance']
-interviewee_cat = [	'Stress and Anxiety',	'Confidence and Self-assurance',	'Passion and Motivation',	'Professionalism and Maturity']
-interviewer_cat = np.array(interviewer_cat)
-interviewee_cat = np.array(interviewee_cat)
+    emotions = ['Admiration', 'Adoration', 'Aesthetic Appreciation', 'Amusement', 'Anger', 'Anxiety', 'Awe', 'Awkwardness', 'Boredom', 'Calmness', 'Concentration', 'Contemplation', 'Confusion', 'Contempt', 'Contentment', 'Craving', 'Determination', 'Disappointment', 'Disgust', 'Distress', 'Doubt', 'Ecstasy', 'Embarrassment', 'Empathic Pain', 'Entrancement', 'Envy', 'Excitement', 'Fear', 'Guilt', 'Horror', 'Interest', 'Joy', 'Love', 'Nostalgia', 'Pain', 'Pride', 'Realization', 'Relief', 'Romance', 'Sadness', 'Satisfaction', 'Desire', 'Shame', 'Surprise (negative)', 'Surprise (positive)', 'Sympathy', 'Tiredness', 'Triumph']
+    interviewer_cat = ['Candidate Perception',	'Engagement Level',	'Patience and Tolerance']
+    interviewee_cat = [	'Stress and Anxiety',	'Confidence and Self-assurance',	'Passion and Motivation',	'Professionalism and Maturity']
+    interviewer_cat = np.array(interviewer_cat)
+    interviewee_cat = np.array(interviewee_cat)
 
-dir = "job_output/file-0-video1318490298.mp4/csv/video1318490298.mp4/"
+    dir = "job_output/file-0-video1318490298.mp4/csv/video1318490298.mp4/"
 
-# Read the CSV files
-face = pd.read_csv(dir + "face.csv")
-prosody = pd.read_csv(dir + "prosody.csv")
+    # Read the CSV files
+    face = pd.read_csv(dir + "face.csv")
+    prosody = pd.read_csv(dir + "prosody.csv")
 
-def save_json(face, modelName, id_names):
-    # Filter and transpose the data
-    assert(len(id_names) == 2)
-    face_0 = face[face["Id"] == id_names[0]]
-    face_0_emotions = face_0[emotions].T
-    face_1 = face[face["Id"] == id_names[1]]
-    face_1_emotions = face_1[emotions].T
+    def save_json(face, modelName, id_names):
+        # Filter and transpose the data
+        assert(len(id_names) == 2)
+        face_0 = face[face["Id"] == id_names[0]]
+        face_0_emotions = face_0[emotions].T
+        face_1 = face[face["Id"] == id_names[1]]
+        face_1_emotions = face_1[emotions].T
 
-    # Convert to numpy arrays and ensure numeric types
-    face_0_emotions = face_0_emotions.apply(pd.to_numeric, errors='coerce').to_numpy()
-    face_1_emotions = face_1_emotions.apply(pd.to_numeric, errors='coerce').to_numpy()
+        # Convert to numpy arrays and ensure numeric types
+        face_0_emotions = face_0_emotions.apply(pd.to_numeric, errors='coerce').to_numpy()
+        face_1_emotions = face_1_emotions.apply(pd.to_numeric, errors='coerce').to_numpy()
 
-    # Perform matrix multiplication
-    if interviewer_index==1:
-        print(face_0_emotions.shape, interviewee.shape)
-        weights_interviewee = np.matmul(face_0_emotions.T, interviewee)
-        weights_interviewer = np.matmul(face_1_emotions.T, interviewer)
-    else:
-        weights_interviewee = np.matmul(face_1_emotions.T, interviewee)
-        weights_interviewer = np.matmul(face_0_emotions.T, interviewer)
+        # Perform matrix multiplication
+        if interviewer_index==1:
+            print(face_0_emotions.shape, interviewee.shape)
+            weights_interviewee = np.matmul(face_0_emotions.T, interviewee)
+            weights_interviewer = np.matmul(face_1_emotions.T, interviewer)
+        else:
+            weights_interviewee = np.matmul(face_1_emotions.T, interviewee)
+            weights_interviewer = np.matmul(face_0_emotions.T, interviewer)
 
-    frames_interviewer = np.argmax(weights_interviewer, axis=1)
-    frames_interviewee = np.argmax(weights_interviewee, axis=1)
+        frames_interviewer = np.argmax(weights_interviewer, axis=1)
+        frames_interviewee = np.argmax(weights_interviewee, axis=1)
 
-    unique_numbers_interviewer, count_interviewer = np.unique(frames_interviewer, return_counts=True)
-    unique_numbers_interviewee, count_interviewee = np.unique(frames_interviewee, return_counts=True)
+        unique_numbers_interviewer, count_interviewer = np.unique(frames_interviewer, return_counts=True)
+        unique_numbers_interviewee, count_interviewee = np.unique(frames_interviewee, return_counts=True)
 
-    interviewer_weights = {}
-    interviewee_weights = {}
+        interviewer_weights = {}
+        interviewee_weights = {}
 
-    for number, count in zip(unique_numbers_interviewer, count_interviewer):
-        print(f"The interviewer displayed {interviewer_cat[number]} for {count/len(frames_interviewer) * 100}% of the time")
-        interviewer_weights[interviewer_cat[number]]=count/len(frames_interviewer)
-    print("\n")
-    for number, count in zip(unique_numbers_interviewee, count_interviewee):
-        print(f"The interviewee displayed {interviewee_cat[number]} for {count/len(frames_interviewee) * 100}% of the time")
-        interviewee_weights[interviewee_cat[number]]=count/len(frames_interviewee)
-    print("\n")
-    print("\n")
-    with open(f'interviewer_weight_analysis_{str(modelName)}.json', 'w') as json_file:
-        json.dump(interviewer_weights, json_file, indent=4)
+        for number, count in zip(unique_numbers_interviewer, count_interviewer):
+            print(f"The interviewer displayed {interviewer_cat[number]} for {count/len(frames_interviewer) * 100}% of the time")
+            interviewer_weights[interviewer_cat[number]]=count/len(frames_interviewer)
+        print("\n")
+        for number, count in zip(unique_numbers_interviewee, count_interviewee):
+            print(f"The interviewee displayed {interviewee_cat[number]} for {count/len(frames_interviewee) * 100}% of the time")
+            interviewee_weights[interviewee_cat[number]]=count/len(frames_interviewee)
+        print("\n")
+        print("\n")
+        with open(f'interviewer_weight_analysis_{str(modelName)}.json', 'w') as json_file:
+            json.dump(interviewer_weights, json_file, indent=4)
 
-    with open(f'interviewee_weight_analysis_{str(modelName)}.json', 'w') as json_file:
-        json.dump(interviewee_weights, json_file, indent=4)
+        with open(f'interviewee_weight_analysis_{str(modelName)}.json', 'w') as json_file:
+            json.dump(interviewee_weights, json_file, indent=4)
 
-save_json(face, "face", ["face_0", "face_1"])
-save_json(prosody, "prosody", ["spk_0", "spk_1"])
+    save_json(face, "face", ["face_0", "face_1"])
+    save_json(prosody, "prosody", ["spk_0", "spk_1"])
