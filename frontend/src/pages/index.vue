@@ -1,8 +1,6 @@
 <template>
   <div>
-    <!-- <HelloWorld /> -->
-    <Upload />
-    <h1>HI</h1>
+    <HelloWorld />
   </div>
   
 </template>
