@@ -56,9 +56,20 @@ def serve_face_viewee_tl():
     return send_from_directory('plot_data', 'face_viewee_tl.csv')
 
 @app.route('/interviewee_weight_face.csv')
-def serve_face_viewee_tl():
-    return send_from_directory('user_weights', 'face_viewee_tl.csv')
+def serve_interviewee_weight_face():
+    return send_from_directory('user_weights', 'interviewee_weight_analysis_face.json')
 
+@app.route('/interviewer_weight_face.csv')
+def serve_interviewer_weight_face():
+    return send_from_directory('user_weights', 'interviewer_weight_analysis_face.json')
+
+@app.route('/interviewee_weight_prosody.csv')
+def serve_interviewee_weight_prosody():
+    return send_from_directory('user_weights', 'interviewee_weight_analysis_prosody.json')
+
+@app.route('/interviewer_weight_prosody.csv')
+def serve_interviewer_weight_prosody():
+    return send_from_directory('user_weights', 'interviewer_weight_analysis_prosody.json')
 
 if __name__ == "__main__":
         app.run(host='0.0.0.0', port=5001)
