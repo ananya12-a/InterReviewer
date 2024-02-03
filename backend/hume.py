@@ -4,7 +4,7 @@ from hume.models.config import ProsodyConfig
 
 client = HumeBatchClient("130VUokCECUiWliyfsZDdrNOpImkLWv60RrPSVPAl1RycIWk")
 # urls = ["https://storage.googleapis.com/hume-test-data/video/armisen-clip.mp4"]
-filepaths = ["/user_data/zoom_mtg.mp4"]
+filepaths = ["\user_data\video1124829211.mp4"]
 configs = [FaceConfig(identify_faces=True), ProsodyConfig()]
 # job = client.submit_job(urls, configs)
 job = client.submit_job(None, [configs],file=filepaths)
