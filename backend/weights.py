@@ -99,12 +99,11 @@ interviewer_cat = ['Candidate Perception',	'Engagement Level',	'Patience and Tol
 interviewee_cat = [	'Stress and Anxiety',	'Confidence and Self-assurance',	'Passion and Motivation',	'Professionalism and Maturity']
 
 
-dir = "job_output/file-0-video1318490298.mp4/csv/video1318490298.mp4"
-os.chdir(dir)
+dir = "job_output/file-0-video1318490298.mp4/csv/video1318490298.mp4/"
 
 # Read the CSV files
-face = pd.read_csv("face.csv")
-prosody = pd.read_csv("prosody.csv")
+face = pd.read_csv(dir + "face.csv")
+prosody = pd.read_csv(dir + "prosody.csv")
 
 # Filter and transpose the data
 face_0 = face[face["Id"] == "face_0"]
@@ -135,6 +134,7 @@ unique_numbers_interviewee, count_interviewee = np.unique(frames_interviewee, re
 
 interviewer_weights = {}
 interviewee_weights = {}
+
 for number, count in zip(unique_numbers_interviewer, count_interviewer):
     print(f"The interviewer displayed {interviewer_cat[number]} for {count/len(frames_interviewer) * 100}% of the time")
     interviewer_weights[interviewer_cat[number]]=count/len(frames_interviewer)
