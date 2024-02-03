@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 import pandas as pd
 import scipy.stats as stats
+import json
 
 def call_chatgpt(input):
     # Load environment variables from the .env file
@@ -79,12 +80,17 @@ def get_recommendations(filename, spokeFirst, onLeft):
 def gpt_recs(filename, spokeFirst, onLeft):
     emotions_list, transcript = get_recommendations(filename, spokeFirst, onLeft)
     emotions = ', '.join(emotions_list)
-    print(emotions)
-    print(transcript)
 
     input = "I said \""+transcript+"\" in my interview and my interviewer showed "+emotions+". How can I improve?"
     return_message = call_chatgpt(input)
-    print(return_message)
+    
+    output = {}
+    output["interviewee_transcript"] = transcript
+    output["interviewer_emotions"] = emotions 
+    output["chat_gpt_repsonse"] = return_message
+
+    with open(f'superlatives/gpt_recs.json', 'w') as json_file:
+            json.dump(output, json_file, indent=4)
 
 # gpt_recs("video1318490298.mp4","Interviewer","Interviewer")
  
