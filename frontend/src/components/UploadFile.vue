@@ -8,25 +8,42 @@
                   <br>
                   <v-card-text>
                     <v-file-input
-                      accept=".txt"
-                      label="Click here to select a .txt file"
-                      outlined-v-model="chosenFile"
+                      accept=".mp4"
+                      label="Click here to select a .mp4 file"
+                      outlined-v-model="video"
                     >
                     </v-file-input>
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn right@click="importTxt">Read File</v-btn>
+                    <v-btn right @click="upload">Read File</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-col>
               <v-col cols="auto">
                 <v-card width="600" height="300" raised>
                   <v-card-title>File contents:</v-card-title>
-                  <!-- <v-card-text><p>{{ data }}</p></v-card-text> -->
+                  <v-card-text><p>{{ data }}</p></v-card-text>
                 </v-card>
               </v-col>
             </v-row>
           </v-container>
     </div>
   </template>
+
+  <script>
+export default{
+  data: ()=>({
+      video:null,
+      data: null,
+  }),
+  methods:{
+    upload(){
+      if (!this.video) {
+        this.data = "No File Chosen"
+      }
+      this.data = "successful upload"
+    }
+  }
+}
+</script>
