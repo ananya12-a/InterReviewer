@@ -3,7 +3,7 @@ import numpy as np
 import zipfile
 import os
 
-def stat_analysis(filename):
+def stat_analysis(filename, spokeFirst, onLeft):
     with zipfile.ZipFile("job_output/artifacts.zip", 'r') as zip_ref:
         zip_ref.extractall("job_output")
 
@@ -13,10 +13,19 @@ def stat_analysis(filename):
     face = pd.read_csv(dir+"face.csv")
     prosody = pd.read_csv(dir+"prosody.csv")
 
-    viewer_face = "0"
-    viewee_face = "1"
-    viewer_pros = "0"
-    viewee_pros = "1"
+    if(onLeft == "Interviewer"):
+        viewer_face = "0"
+        viewee_face = "1"
+    else:
+        viewer_face = "1"
+        viewee_face = "0"
+    
+    if(spokeFirst == "Interviewer"):
+        viewer_pros = "0"
+        viewee_pros = "1"
+    else:
+        viewer_face = "1"
+        viewee_face = "0"
 
     ## dataset processing
     emotions = ['Admiration', 'Adoration', 'Aesthetic Appreciation', 'Amusement', 'Anger', 'Anxiety', 'Awe', 'Awkwardness', 'Boredom', 'Calmness', 'Concentration', 'Contemplation', 'Confusion', 'Contempt', 'Contentment', 'Craving', 'Determination', 'Disappointment', 'Disgust', 'Distress', 'Doubt', 'Ecstasy', 'Embarrassment', 'Empathic Pain', 'Entrancement', 'Envy', 'Excitement', 'Fear', 'Guilt', 'Horror', 'Interest', 'Joy', 'Love', 'Nostalgia', 'Pain', 'Pride', 'Realization', 'Relief', 'Romance', 'Sadness', 'Satisfaction', 'Desire', 'Shame', 'Surprise (negative)', 'Surprise (positive)', 'Sympathy', 'Tiredness', 'Triumph']

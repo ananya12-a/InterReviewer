@@ -88,9 +88,16 @@ import json
 # np.savetxt("weights/interviewer.csv", data_interviewer, delimiter=",")
 # np.savetxt("weights/interviewee.csv", data_interviewee, delimiter=",")
 
-def weights_anal():
-    interviewer_index = 1
-
+def weights_anal(spokeFirst, onLeft):
+    if(onLeft == "Interviewee"):
+        interviewer_index_face = 1
+    else:
+        interviewer_index_face = 0
+    
+    if(spokeFirst == "Interviewee"):
+        interviewer_index_pros = 1
+    else:
+        interviewer_index_pros = 0
 
     interviewee = np.loadtxt("weights/interviewee.csv",delimiter=",", dtype=np.float64)
     interviewer = np.loadtxt("weights/interviewer.csv",delimiter=",", dtype=np.float64)
@@ -107,7 +114,7 @@ def weights_anal():
     face = pd.read_csv(dir + "face.csv")
     prosody = pd.read_csv(dir + "prosody.csv")
 
-    def save_json(face, modelName, id_names):
+    def save_json(face, modelName, id_names, interviewer_index):
         # Filter and transpose the data
         assert(len(id_names) == 2)
         face_0 = face[face["Id"] == id_names[0]]
@@ -152,5 +159,5 @@ def weights_anal():
         with open(f'user_weights/interviewee_weight_analysis_{str(modelName)}.json', 'w') as json_file:
             json.dump(interviewee_weights, json_file, indent=4)
 
-    save_json(face, "face", ["face_0", "face_1"])
-    save_json(prosody, "prosody", ["spk_0", "spk_1"])
+    save_json(face, "face", ["face_0", "face_1"], interviewer_index_face)
+    save_json(prosody, "prosody", ["spk_0", "spk_1"], interviewer_index_pros)
