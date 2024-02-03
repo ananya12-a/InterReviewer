@@ -62,6 +62,7 @@ export default {
         }
       });
       console.log(response);
+      this.$router.push('/analysis');
     } catch (error) {
       console.error(error);
     } finally {
