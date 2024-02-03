@@ -7,4 +7,4 @@ def complete_analysis(filename, spokeFirst, onLeft):
 
     # face_0 is always left, spk_0 is always first
     stat_analysis(filename, spokeFirst, onLeft)
-    weights_anal(spokeFirst, onLeft)
+    weights_anal(filename, spokeFirst, onLeft)

@@ -88,7 +88,7 @@ import json
 # np.savetxt("weights/interviewer.csv", data_interviewer, delimiter=",")
 # np.savetxt("weights/interviewee.csv", data_interviewee, delimiter=",")
 
-def weights_anal(spokeFirst, onLeft):
+def weights_anal(filename, spokeFirst, onLeft):
     if(onLeft == "Interviewee"):
         interviewer_index_face = 1
     else:
@@ -108,7 +108,7 @@ def weights_anal(spokeFirst, onLeft):
     interviewer_cat = np.array(interviewer_cat)
     interviewee_cat = np.array(interviewee_cat)
 
-    dir = "job_output/file-0-video1318490298.mp4/csv/video1318490298.mp4/"
+    dir = "job_output/file-0-"+filename+"/csv/"+filename+"/"
 
     # Read the CSV files
     face = pd.read_csv(dir + "face.csv")
