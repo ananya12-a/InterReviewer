@@ -29,9 +29,9 @@ def upload_file():
     if file:
         filename = file.filename
         file.save(os.path.join('user_data/', filename))
-        time.sleep(10)
+        # time.sleep(10)
         # RUN COMPLETE ANALYSIS
-        # complete_analysis(filename)
+        complete_analysis(filename)
         return 'File uploaded successfully', 200
 
 
